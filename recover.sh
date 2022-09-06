@@ -39,7 +39,7 @@ sudo mkdir ~/.config/alacritty
 sudo cp $CURRENT_DIR/alacritty.yml ~/.config/alacritty/alacritty.yml
 
 echo "cloning dwm-flexipatch to $HOME"
-git clone https://github.com/bakkeby/dwm-flexipatch $HOME/
+git clone https://github.com/bakkeby/dwm-flexipatch $HOME/dwm-flexipatch
 DWM_DIR=$HOME/dwm-flexipatch
 echo "making backup for config.h"
 sudo cp $DWM_DIR/config.h $DWM_DIR/config.h.backup
