@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 CURRENT_DIR=$( dirname -- "$0"; )
-USERDIR="/home/user/"
+USERDIR="/home/user"
 
 exec &> >(tee  $CURRENT_DIR/recover.log)
 
@@ -50,7 +50,7 @@ cp $CURRENT_DIR/config.mk $DWM_DIR/config.mk
 echo "replacing config.h"
 cp $CURRENT_DIR/config.h $DWM_DIR/config.h
 echo "replacing patches.h"
-cp $CURRENT_DIR/patches.h $DWM_DIR/config.h
+cp $CURRENT_DIR/patches.h $DWM_DIR/patches.h
 echo "create dir for dwm-autostart"
 mkdir $USERDIR/.local/share/dwm
 echo "create dwm-autostart"
