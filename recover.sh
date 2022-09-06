@@ -77,5 +77,5 @@ yay -S fish
 # curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install
 # omf install bobthefish # can not use omf from bash
 echo "set theme_color_scheme nord" >> $USERDIR/.config/fish/conf.d/omf.fish
-echo "fish" >> ~/.bashrc
+echo "fish" >> $USERDIR/.bashrc
 echo "done"
