@@ -1,5 +1,5 @@
 #! /bin/bash
 
 runnotifier.sh
-switchlang.sh
+swkboard.sh
 udiskie
