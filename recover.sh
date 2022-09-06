@@ -18,33 +18,33 @@ yay -S simplenote-electron-bin brightnessctl
 
 echo "installing user scripts"
 echo "installing onliddown.sh"
-cp $CURRENT_DIR/onliddown.sh /usr/local/bin/onliddown.sh
-chmod +x /usr/local/bin/onliddown.sh
+sudo cp $CURRENT_DIR/onliddown.sh /usr/local/bin/onliddown.sh
+sudo chmod +x /usr/local/bin/onliddown.sh
 echo "installing swithchlang.sh"
-cp $CURRENT_DIR/swithchlang.sh /usr/local/bin/swithchlang.sh
-chmod +x /usr/local/bin/swithchlang.sh
+sudo cp $CURRENT_DIR/swithchlang.sh /usr/local/bin/swithchlang.sh
+sudo chmod +x /usr/local/bin/swithchlang.sh
 echo "installing runnotifier.sh"
-cp $CURRENT_DIR/runnotifier.sh /usr/local/bin/runnotifier.sh
-chmod +x /usr/local/bin/runnotifier.sh
+sudo cp $CURRENT_DIR/runnotifier.sh /usr/local/bin/runnotifier.sh
+sudo chmod +x /usr/local/bin/runnotifier.sh
 echo "installing udiskie_check.sh"
-cp $CURRENT_DIR/udiskie_check.sh /usr/local/bin/udiskie_check.sh
-chmod +x /usr/local/bin/udiskie_check.sh
+sudo cp $CURRENT_DIR/udiskie_check.sh /usr/local/bin/udiskie_check.sh
+sudo chmod +x /usr/local/bin/udiskie_check.sh
 echo "installing onstart.sh"
-cp $CURRENT_DIR/onstart.sh /usr/local/bin/onstart.sh
-chmod +x /usr/local/bin/onstart.sh
+sudo cp $CURRENT_DIR/onstart.sh /usr/local/bin/onstart.sh
+sudo chmod +x /usr/local/bin/onstart.sh
 
 echo "installing alacritty"
 yay -S alacritty
-mkdir ~/.config/alacritty
-cp $CURRENT_DIR/alacritty.yml ~/.config/alacritty/alacritty.yml
+sudo mkdir ~/.config/alacritty
+sudo cp $CURRENT_DIR/alacritty.yml ~/.config/alacritty/alacritty.yml
 
 echo "cloning dwm-flexipatch to $HOME"
 git clone https://github.com/bakkeby/dwm-flexipatch $HOME
 DWM_DIR=$HOME/dwm-flexipatch
 echo "making backup for config.h"
-cp $DWM_DIR/config.h $DWM_DIR/config.h.backup
+sudo cp $DWM_DIR/config.h $DWM_DIR/config.h.backup
 echo "making backup for patches.h"
-cp $DWM_DIR/config.h $DWM_DIR/pathces.h.backup
+sudo cp $DWM_DIR/config.h $DWM_DIR/pathces.h.backup
 echo "replacing config.h"
 cp $CURRENT_DIR/config.h $DWM_DIR/config.h
 echo "replacing patches.h"
@@ -62,17 +62,17 @@ yay -S powerline-fonts nerd-fonts-git
 echo "generating ranger configs"
 ranger --copy-config=all
 echo "replacing rc.conf"
-cp $CURRENT_DIR/rc.conf ~/.config/ranger/rc.conf
+sudo cp $CURRENT_DIR/rc.conf ~/.config/ranger/rc.conf
 echo "replacing rc.conf for root"
-cp $CURRENT_DIR/rc.conf /root/.config/ranger/rc.conf
+sudo cp $CURRENT_DIR/rc.conf /root/.config/ranger/rc.conf
 echo "creating directory for ranger plugins"
-mkdir ~/.config/ranger/plugins
+sudo mkdir ~/.config/ranger/plugins
 echo "installing ranger devicons plugin"
 git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 
 echo "installing fish and oh-my-fish with bobthefish nord theme"
 yay -S fish
-curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+sudo curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 omf install bobthefish
 echo "set theme_color_scheme nord" >> ~/.config/fish/conf.d/omf.fish
 echo "done"
