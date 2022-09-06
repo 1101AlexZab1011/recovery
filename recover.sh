@@ -39,7 +39,7 @@ sudo mkdir ~/.config/alacritty
 sudo cp $CURRENT_DIR/alacritty.yml ~/.config/alacritty/alacritty.yml
 
 echo "cloning dwm-flexipatch to $HOME"
-git clone https://github.com/bakkeby/dwm-flexipatch $HOME
+git clone https://github.com/bakkeby/dwm-flexipatch $HOME/
 DWM_DIR=$HOME/dwm-flexipatch
 echo "making backup for config.h"
 sudo cp $DWM_DIR/config.h $DWM_DIR/config.h.backup
@@ -68,7 +68,7 @@ sudo cp $CURRENT_DIR/rc.conf /root/.config/ranger/rc.conf
 echo "creating directory for ranger plugins"
 sudo mkdir ~/.config/ranger/plugins
 echo "installing ranger devicons plugin"
-git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons/
 
 echo "installing fish and oh-my-fish with bobthefish nord theme"
 yay -S fish
