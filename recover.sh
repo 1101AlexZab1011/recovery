@@ -20,15 +20,12 @@ echo "installing user scripts"
 echo "installing onliddown.sh"
 sudo cp $CURRENT_DIR/onliddown.sh /usr/local/bin/onliddown.sh
 sudo chmod +x /usr/local/bin/onliddown.sh
-echo "installing swithchlang.sh"
+echo "installing swkboard.sh"
 sudo cp $CURRENT_DIR/swkboard.sh /usr/local/bin/swkboard.sh
-sudo chmod +x /usr/local/bin/swithchlang.sh
+sudo chmod +x /usr/local/bin/swkboard.sh
 echo "installing runnotifier.sh"
 sudo cp $CURRENT_DIR/runnotifier.sh /usr/local/bin/runnotifier.sh
 sudo chmod +x /usr/local/bin/runnotifier.sh
-echo "installing udiskie_check.sh"
-sudo cp $CURRENT_DIR/udiskie_check.sh /usr/local/bin/udiskie_check.sh
-sudo chmod +x /usr/local/bin/udiskie_check.sh
 echo "installing onstart.sh"
 sudo cp $CURRENT_DIR/onstart.sh /usr/local/bin/onstart.sh
 sudo chmod +x /usr/local/bin/onstart.sh
