@@ -58,7 +58,7 @@ echo "installing dwm"
 sudo make install -C $DWM_DIR
 
 echo "installing nerd fonts and powerline fonts"
-yay -S powerline-fonts nerd-fonts-complete
+yay -S powerline-fonts ttf-nerd-fonts-symbols-1000-em
 
 echo "generating ranger configs"
 ranger --copy-config=all
