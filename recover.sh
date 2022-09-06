@@ -58,7 +58,7 @@ echo "installing dwm"
 sudo make install -C $DWM_DIR
 
 echo "installing nerd fonts and powerline fonts"
-yay -S powerline-fonts nerd-fonts-completess
+yay -S powerline-fonts nerd-fonts-complete
 
 echo "generating ranger configs"
 ranger --copy-config=all
@@ -67,14 +67,14 @@ sudo cp $CURRENT_DIR/rc.conf ~/.config/ranger/rc.conf
 echo "replacing rc.conf for root"
 sudo cp $CURRENT_DIR/rc.conf /root/.config/ranger/rc.conf
 echo "creating directory for ranger plugins"
-sudo mkdir ~/.config/ranger/plugins
+mkdir ~/.config/ranger/plugins
 echo "installing ranger devicons plugin"
-sudo git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons/
+git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 
 echo "installing fish and oh-my-fish with bobthefish nord theme"
 yay -S fish
-sudo curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 omf install bobthefish
-sudo echo "set theme_color_scheme nord" >> ~/.config/fish/conf.d/omf.fish
+echo "set theme_color_scheme nord" >> ~/.config/fish/conf.d/omf.fish
 sudo echo "fish" >> ~/.bashrc
 echo "done"
