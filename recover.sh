@@ -57,7 +57,7 @@ echo "installing dwm"
 make install -C $DWM_DIR
 
 echo "installing nerd fonts and powerline fonts"
-yay -S powerline-fonts nerd-fonts-complete
+yay -S powerline-fonts nerd-fonts-completess
 
 echo "generating ranger configs"
 ranger --copy-config=all
@@ -74,5 +74,6 @@ echo "installing fish and oh-my-fish with bobthefish nord theme"
 yay -S fish
 sudo curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 omf install bobthefish
-echo "set theme_color_scheme nord" >> ~/.config/fish/conf.d/omf.fish
+sudo echo "set theme_color_scheme nord" >> ~/.config/fish/conf.d/omf.fish
+sudo echo "fish" >> ~/.bashrc
 echo "done"
