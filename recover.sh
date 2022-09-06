@@ -74,7 +74,7 @@ git clone https://github.com/alexanderjeurissen/ranger_devicons $USERDIR/.config
 
 echo "installing fish and oh-my-fish with bobthefish nord theme"
 yay -S fish
-curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install
+# curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install
 # omf install bobthefish # can not use omf from bash
 echo "set theme_color_scheme nord" >> $USERDIR/.config/fish/conf.d/omf.fish
 echo "fish" >> ~/.bashrc
