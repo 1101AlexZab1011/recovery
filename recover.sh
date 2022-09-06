@@ -18,32 +18,32 @@ yay -S simplenote-electron-bin brightnessctl imlib2
 
 echo "installing user scripts"
 echo "installing onliddown.sh"
-sudo cp $CURRENT_DIR/onliddown.sh /usr/local/bin/onliddown.sh
-sudo chmod +x /usr/local/bin/onliddown.sh
+cp $CURRENT_DIR/onliddown.sh /usr/local/bin/onliddown.sh
+chmod +x /usr/local/bin/onliddown.sh
 echo "installing swkboard.sh"
-sudo cp $CURRENT_DIR/swkboard.sh /usr/local/bin/swkboard.sh
-sudo chmod +x /usr/local/bin/swkboard.sh
+cp $CURRENT_DIR/swkboard.sh /usr/local/bin/swkboard.sh
+chmod +x /usr/local/bin/swkboard.sh
 echo "installing runnotifier.sh"
-sudo cp $CURRENT_DIR/runnotifier.sh /usr/local/bin/runnotifier.sh
-sudo chmod +x /usr/local/bin/runnotifier.sh
+cp $CURRENT_DIR/runnotifier.sh /usr/local/bin/runnotifier.sh
+chmod +x /usr/local/bin/runnotifier.sh
 echo "installing onstart.sh"
-sudo cp $CURRENT_DIR/onstart.sh /usr/local/bin/onstart.sh
-sudo chmod +x /usr/local/bin/onstart.sh
+cp $CURRENT_DIR/onstart.sh /usr/local/bin/onstart.sh
+chmod +x /usr/local/bin/onstart.sh
 
 echo "installing alacritty"
 yay -S alacritty
-sudo mkdir ~/.config/alacritty
-sudo cp $CURRENT_DIR/alacritty.yml ~/.config/alacritty/alacritty.yml
+mkdir ~/.config/alacritty
+cp $CURRENT_DIR/alacritty.yml ~/.config/alacritty/alacritty.yml
 
 echo "cloning dwm-flexipatch to $HOME"
 git clone https://github.com/bakkeby/dwm-flexipatch $HOME/dwm-flexipatch
 DWM_DIR=$HOME/dwm-flexipatch
 echo "installing dwm flexipatch"
-sudo make install -C $DWM_DIR
+make install -C $DWM_DIR
 echo "making backup for config.h"
-sudo cp $DWM_DIR/config.h $DWM_DIR/config.h.backup
+cp $DWM_DIR/config.h $DWM_DIR/config.h.backup
 echo "making backup for patches.h"
-sudo cp $DWM_DIR/config.h $DWM_DIR/pathces.h.backup
+cp $DWM_DIR/config.h $DWM_DIR/pathces.h.backup
 echo "replacing config.mk"
 cp $CURRENT_DIR/config.mk $DWM_DIR/config.mk
 echo "replacing config.h"
@@ -55,7 +55,7 @@ mkdir ~/.local/share/dwm
 echo "create dwm-autostart"
 cp $CURRENT_DIR/autostart.sh ~/.local/share/dwm/autostart.sh
 echo "installing dwm"
-sudo make install -C $DWM_DIR
+make install -C $DWM_DIR
 
 echo "installing nerd fonts and powerline fonts"
 yay -S powerline-fonts ttf-nerd-fonts-symbols-1000-em
@@ -63,9 +63,9 @@ yay -S powerline-fonts ttf-nerd-fonts-symbols-1000-em
 echo "generating ranger configs"
 ranger --copy-config=all
 echo "replacing rc.conf"
-sudo cp $CURRENT_DIR/rc.conf ~/.config/ranger/rc.conf
+cp $CURRENT_DIR/rc.conf ~/.config/ranger/rc.conf
 echo "replacing rc.conf for root"
-sudo cp $CURRENT_DIR/rc.conf /root/.config/ranger/rc.conf
+cp $CURRENT_DIR/rc.conf /root/.config/ranger/rc.conf
 echo "creating directory for ranger plugins"
 mkdir ~/.config/ranger/plugins
 echo "installing ranger devicons plugin"
@@ -76,5 +76,5 @@ yay -S fish
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 omf install bobthefish
 echo "set theme_color_scheme nord" >> ~/.config/fish/conf.d/omf.fish
-sudo echo "fish" >> ~/.bashrc
+echo "fish" >> ~/.bashrc
 echo "done"
