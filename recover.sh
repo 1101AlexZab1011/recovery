@@ -10,9 +10,9 @@ echo "updating"
 yay -Syu
 echo "installing necessary packages"
 echo "installing xorg stterm suckless-tools build-essential libx11-dev libxinerama-dev libxft-dev git vim libwebkit2gtk-4.0-dev "
-yay -S xorg stterm suckless-tools build-essential libx11-dev libxinerama-dev libxft-dev git vim libwebkit2gtk-4.0-dev 
+yay -S xorg slock base-devel libx11 libxinerama libxft git vim webkit2gtk 
 echo "installing twmn ranger bsdtar atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvutxt udiskie"
-yay -S twmn ranger bsdtar atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvutxt udiskie
+yay -S twmn-git ranger atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie
 echo "installing simplenote brightnessctl"
 yay -S simplenote-electron-bin brightnessctl
 
