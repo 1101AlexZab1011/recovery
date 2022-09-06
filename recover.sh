@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 CURRENT_DIR=$( dirname -- "$0"; )
+USERDIR="/home/user/"
 
 exec &> >(tee  $CURRENT_DIR/recover.log)
 
@@ -32,12 +33,12 @@ chmod +x /usr/local/bin/onstart.sh
 
 echo "installing alacritty"
 yay -S alacritty
-mkdir ~/.config/alacritty
-cp $CURRENT_DIR/alacritty.yml ~/.config/alacritty/alacritty.yml
+mkdir $USERDIR/.config/alacritty
+cp $CURRENT_DIR/alacritty.yml $USERDIR/.config/alacritty/alacritty.yml
 
 echo "cloning dwm-flexipatch to $HOME"
-git clone https://github.com/bakkeby/dwm-flexipatch $HOME/dwm-flexipatch
-DWM_DIR=$HOME/dwm-flexipatch
+git clone https://github.com/bakkeby/dwm-flexipatch $USERDIR/dwm-flexipatch
+DWM_DIR=$USERDIR/dwm-flexipatch
 echo "installing dwm flexipatch"
 make install -C $DWM_DIR
 echo "making backup for config.h"
@@ -51,9 +52,9 @@ cp $CURRENT_DIR/config.h $DWM_DIR/config.h
 echo "replacing patches.h"
 cp $CURRENT_DIR/patches.h $DWM_DIR/config.h
 echo "create dir for dwm-autostart"
-mkdir ~/.local/share/dwm
+mkdir $USERDIR/.local/share/dwm
 echo "create dwm-autostart"
-cp $CURRENT_DIR/autostart.sh ~/.local/share/dwm/autostart.sh
+cp $CURRENT_DIR/autostart.sh $USERDIR/.local/share/dwm/autostart.sh
 echo "installing dwm"
 make install -C $DWM_DIR
 
@@ -63,18 +64,18 @@ yay -S powerline-fonts ttf-nerd-fonts-symbols-1000-em
 echo "generating ranger configs"
 ranger --copy-config=all
 echo "replacing rc.conf"
-cp $CURRENT_DIR/rc.conf ~/.config/ranger/rc.conf
+cp $CURRENT_DIR/rc.conf $USERDIR/.config/ranger/rc.conf
 echo "replacing rc.conf for root"
 cp $CURRENT_DIR/rc.conf /root/.config/ranger/rc.conf
 echo "creating directory for ranger plugins"
-mkdir ~/.config/ranger/plugins
+mkdir $USERDIR/.config/ranger/plugins
 echo "installing ranger devicons plugin"
-git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+git clone https://github.com/alexanderjeurissen/ranger_devicons $USERDIR/.config/ranger/plugins/ranger_devicons
 
 echo "installing fish and oh-my-fish with bobthefish nord theme"
 yay -S fish
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 omf install bobthefish
-echo "set theme_color_scheme nord" >> ~/.config/fish/conf.d/omf.fish
+echo "set theme_color_scheme nord" >> $USERDIR/.config/fish/conf.d/omf.fish
 echo "fish" >> ~/.bashrc
 echo "done"
