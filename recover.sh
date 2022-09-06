@@ -21,7 +21,7 @@ echo "installing onliddown.sh"
 sudo cp $CURRENT_DIR/onliddown.sh /usr/local/bin/onliddown.sh
 sudo chmod +x /usr/local/bin/onliddown.sh
 echo "installing swithchlang.sh"
-sudo cp $CURRENT_DIR/swithchlang.sh /usr/local/bin/swithchlang.sh
+sudo cp $CURRENT_DIR/swkboard.sh /usr/local/bin/swkboard.sh
 sudo chmod +x /usr/local/bin/swithchlang.sh
 echo "installing runnotifier.sh"
 sudo cp $CURRENT_DIR/runnotifier.sh /usr/local/bin/runnotifier.sh
@@ -56,7 +56,7 @@ cp $CURRENT_DIR/autostart.sh ~/.local/share/dwm/autostart.sh
 echo "installing dwm"
 make install -C $DWM_DIR
 
-echo"installing nerd fonts and powerline fonts"
+echo "installing nerd fonts and powerline fonts"
 yay -S powerline-fonts nerd-fonts-git
 
 echo "generating ranger configs"

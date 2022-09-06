@@ -1,3 +1,3 @@
 #!/bin/bash
 
-(setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ru || setxkbmap us
+setxkbmap -layout "us,ru" -option "grp:lalt_lshift_toggle"
