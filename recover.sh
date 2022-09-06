@@ -13,8 +13,8 @@ echo "installing xorg stterm suckless-tools build-essential libx11-dev libxinera
 yay -S xorg slock base-devel libx11 libxinerama libxft git vim webkit2gtk 
 echo "installing twmn ranger bsdtar atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvutxt udiskie"
 yay -S twmn-git ranger atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie
-echo "installing simplenote brightnessctl"
-yay -S simplenote-electron-bin brightnessctl
+echo "installing simplenote brightnessctl imlib2"
+yay -S simplenote-electron-bin brightnessctl imlib2
 
 echo "installing user scripts"
 echo "installing onliddown.sh"
@@ -38,10 +38,14 @@ sudo cp $CURRENT_DIR/alacritty.yml ~/.config/alacritty/alacritty.yml
 echo "cloning dwm-flexipatch to $HOME"
 git clone https://github.com/bakkeby/dwm-flexipatch $HOME/dwm-flexipatch
 DWM_DIR=$HOME/dwm-flexipatch
+echo "installing dwm flexipatch"
+sudo make install -C $DWM_DIR
 echo "making backup for config.h"
 sudo cp $DWM_DIR/config.h $DWM_DIR/config.h.backup
 echo "making backup for patches.h"
 sudo cp $DWM_DIR/config.h $DWM_DIR/pathces.h.backup
+echo "replacing config.mk"
+cp $CURRENT_DIR/config.mk $DWM_DIR/config.mk
 echo "replacing config.h"
 cp $CURRENT_DIR/config.h $DWM_DIR/config.h
 echo "replacing patches.h"
@@ -51,7 +55,7 @@ mkdir ~/.local/share/dwm
 echo "create dwm-autostart"
 cp $CURRENT_DIR/autostart.sh ~/.local/share/dwm/autostart.sh
 echo "installing dwm"
-make install -C $DWM_DIR
+sudo make install -C $DWM_DIR
 
 echo "installing nerd fonts and powerline fonts"
 yay -S powerline-fonts nerd-fonts-completess
