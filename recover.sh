@@ -10,12 +10,12 @@ pacman -Sy archlinux-keyring
 echo "updating"
 yay -Syu
 echo "installing necessary packages"
-echo "installing xorg stterm suckless-tools build-essential libx11-dev libxinerama-dev libxft-dev git vim libwebkit2gtk-4.0-dev "
-yay -S xorg slock base-devel libx11 libxinerama libxft git vim webkit2gtk 
-echo "installing twmn ranger bsdtar atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvutxt udiskie"
+echo "installing xorg slock base-devel libx11 libxinerama libxft git vim webkit2gtk dbus libconfig mesa pcre2 libevdev uthash"
+yay -S xorg slock base-devel libx11 libxinerama libxft git vim webkit2gtk dbus libconfig mesa pcre2 libevdev uthash
+echo "installing twmn-git ranger atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie"
 yay -S twmn-git ranger atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie
-echo "installing simplenote brightnessctl imlib2"
-yay -S simplenote-electron-bin brightnessctl imlib2
+echo "installing simplenote brightnessctl imlib2 geany libxext libxcb pixman"
+yay -S simplenote-electron-bin brightnessctl imlib2 geany libxext libxcb pixman
 
 echo "installing user scripts"
 echo "installing onliddown.sh"
