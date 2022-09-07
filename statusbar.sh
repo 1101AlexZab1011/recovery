@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-     
-     
-#while true; do
-#		date '+  %a %d %b   %R ' > /tmp/CurTime.tmp
-#		sleep 60s
-#done &
 
-#while true; do
-#		tempcpu=$(printf "%b" "import psutil\nprint('{}%'.format(psutil.cpu_percent(interval=2)))" | python3)
-#		echo $tempcpu > /tmp/CurCPUMain.tmp
-#done &
+
+while true; do
+		date '+  %a %d %b   %R ' > /tmp/CurTime.tmp
+    	sleep 60s
+done &
+
+while true; do
+		tempcpu=$(printf "%b" "import psutil\nprint('{}%'.format(psutil.cpu_percent(interval=2)))" | python3)
+		echo $tempcpu > /tmp/CurCPUMain.tmp
+done &
 
 LOW_CH_IND=0
 HIGH_CPU_IND=0
