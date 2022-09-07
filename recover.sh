@@ -11,8 +11,8 @@ pacman -Sy archlinux-keyring
 echo "updating"
 yay -Syu
 echo "installing necessary packages"
-echo "installing xorg slock base-devel libx11 libxinerama libxft git vim webkit2gtk dbus libconfig mesa pcre2 libevdev uthash meson ninja"
-yay -S xorg slock base-devel libx11 libxinerama libxft git vim webkit2gtk dbus libconfig mesa pcre2 libevdev uthash meson ninja
+echo "installing xorg slock base-devel libx11 libxinerama libxft git vim webkit2gtk dbus libconfig mesa pcre2 libevdev uthash meson ninja acpi sysstat"
+yay -S xorg slock base-devel libx11 libxinerama libxft git vim webkit2gtk dbus libconfig mesa pcre2 libevdev uthash meson ninja acpi sysstat
 echo "installing twmn-git ranger atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie"
 yay -S twmn-git ranger atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie
 echo "installing simplenote brightnessctl imlib2 geany libxext libxcb pixman"
@@ -28,6 +28,9 @@ chmod +x /usr/local/bin/swkboard.sh
 echo "installing runnotifier.sh"
 cp $CURRENT_DIR/runnotifier.sh /usr/local/bin/runnotifier.sh
 chmod +x /usr/local/bin/runnotifier.sh
+echo "installing statusbar.sh"
+cp $CURRENT_DIR/statusbar.sh /usr/local/bin/statusbar.sh
+chmod +x /usr/local/bin/statusbar.sh
 
 echo "installing alacritty"
 yay -S alacritty
@@ -81,7 +84,7 @@ cd $CURRENT_DIR
 
 echo "initializing .xsession"
 echo "swkboard.sh" >> $USERDIR/.xsession
-echo "picom -b --animations --animation-window-mass 0.5 --animation-for-open-window zoom --animation-stiffnes 500" >> $USERDIR/.xsession
+echo "picom -b --animations --animation-window-mass 0.8 --animation-for-open-window zoom --backend xr_glx_hybrid" >> $USERDIR/.xsession
 echo "udiskie&" >> $USERDIR/.xsession
 echo "twmnd&" >> $USERDIR/.xsession
 echo "onliddown.sh&" >> $USERDIR/.xsession
