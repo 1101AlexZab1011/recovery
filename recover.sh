@@ -15,8 +15,8 @@ echo "installing xorg slock base-devel libx11 libxinerama libxft git vim webkit2
 yay -S xorg slock base-devel libx11 libxinerama libxft git vim webkit2gtk dbus libconfig mesa pcre2 libevdev uthash meson ninja acpi sysstat
 echo "installing twmn-git ranger atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie"
 yay -S twmn-git ranger atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie
-echo "installing simplenote brightnessctl imlib2 geany libxext libxcb pixman"
-yay -S simplenote-electron-bin brightnessctl imlib2 geany libxext libxcb pixman
+echo "installing simplenote brightnessctl imlib2 geany libxext libxcb pixman network-manager-applet "
+yay -S simplenote-electron-bin brightnessctl imlib2 geany libxext libxcb pixman network-manager-applet 
 
 echo "installing user scripts"
 echo "installing onliddown.sh"
@@ -88,6 +88,8 @@ echo "picom -b --animations --animation-window-mass 0.8 --animation-for-open-win
 echo "udiskie&" >> $USERDIR/.xsession
 echo "twmnd&" >> $USERDIR/.xsession
 echo "onliddown.sh&" >> $USERDIR/.xsession
+echo "nm-applet.sh&" >> $USERDIR/.xsession
+echo "statusbar.sh&" >> $USERDIR/.xsession
 
 echo "installing fish and oh-my-fish with bobthefish nord theme"
 yay -S fish
