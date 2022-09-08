@@ -859,10 +859,6 @@ static const char *dmenucmd[] = {
 static const char *termcmd[]  = { "alacritty", NULL };
 
 // Brightness Commands
-/*static const char *brightness[2][] = {
-	{"brightnessctl", "set", "5%+", NULL},
-	{"brightnessctl", "set", "5%-", NULL}
-};*/
 static const char *brightnessup[] = {"brightnessctl", "set", "5%+", NULL};
 static const char *brightnessdown[] = {"brightnessctl", "set", "5%-", NULL};
 
@@ -895,14 +891,10 @@ static const Key on_empty_keys[] = {
 };
 #endif // ON_EMPTY_KEYS_PATCH
 
-static const char *swkboardcmd[]  = { "swkboard.sh", NULL };
-
 #define XF86XKAudioMute	0x1008FF12   /* Mute sound from the system */
 
 static const Key keys[] = {
 	/* modifier                     key            function                argument */
-	// switch languages
-	//{ ShiftMask,           			XK_Alt_L,     spawn,				   {.v = swkboardcmd} },
 	// control brightness
 	{0,               XF86XK_MonBrightnessUp,	  spawn,   				   {.v = brightnessup} },
 	{0,             XF86XK_MonBrightnessDown, 	  spawn,				   {.v = brightnessdown} },
@@ -1006,7 +998,7 @@ static const Key keys[] = {
 	#if INSETS_PATCH
 	{ MODKEY|ShiftMask|ControlMask, XK_a,          updateinset,            {.v = &default_inset } },
 	#endif // INSETS_PATCH
-	{ MODKEY,                       XK_Return,     zoom,                   {0} },
+	{ MODKEY|ShiftMask,                       XK_Return,     zoom,                   {0} },
 	#if VANITYGAPS_PATCH
 	{ MODKEY|Mod4Mask,              XK_u,          incrgaps,               {.i = +1 } },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_u,          incrgaps,               {.i = -1 } },
