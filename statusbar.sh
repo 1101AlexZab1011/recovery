@@ -99,32 +99,32 @@ generate_charge_string () {
 
 	if [ "$charge_status" == "D" ]; then
 		if [ "$charge_amount" -gt 90 ]; then
-			sym="^c#eceff4^"
+			sym="${DEF_COLOR}"
 		elif [ "$charge_amount" -gt 65 -a "$charge_amount" -le 90 ]; then
-			sym="^c#eceff4^"
+			sym="${DEF_COLOR}"
 		elif [ "$charge_amount" -gt 35 -a "$charge_amount" -le 65 ]; then
-			sym="^c#eceff4^"
+			sym="${DEF_COLOR}"
 		elif [ "$charge_amount" -gt 25 -a "$charge_amount" -le 35 ]; then
-			sym="^c#eceff4^"
+			sym="${DEF_COLOR}"
 		elif [ "$charge_amount" -gt 20 -a "$charge_amount" -le 25 ]; then
-			sym="^c#ebcb8b^^c#eceff4^"
+			sym="^c#ebcb8b^${DEF_COLOR}"
 		elif [ "$charge_amount" -gt 15 -a "$charge_amount" -le 20 ]; then
-			sym="^c#bf616a^^c#eceff4^"
+			sym="^c#bf616a^${DEF_COLOR}"
 		else
 			blink $LOW_CH_IND
 			LOW_CH_IND=$?
 			
 			if [ $LOW_CH_IND -eq 1 ]; then
-				sym="^c#bf616a^^c#eceff4^"
+				sym="^c#bf616a^${DEF_COLOR}"
 			else
-				sym=" ^c#eceff4^"
+				sym=" ${DEF_COLOR}"
 			fi
 		fi
 	elif [ "$charge_status" == "N" ]; then
-		sym="^c#eceff4^"
+		sym="${DEF_COLOR}"
 		charge_amount=100
 	else
-		sym="^c#eceff4^"
+		sym="${DEF_COLOR}"
 	fi
 	
 	if [ $(expr length $charge_amount) -lt 2 ]; then
@@ -140,19 +140,19 @@ generate_cpu_string(){
 	local cpu_percentage_number="${cpu_percentage: 0:-1}"
 	
 	if (( $(echo "$cpu_percentage_number < 70" |bc -l) )); then
-		sym="^c#eceff4^CPU:"
+		sym="${DEF_COLOR}CPU:"
 	elif (( $(echo "$cpu_percentage_number >= 70" |bc -l)  &&  $(echo "$cpu_percentage_number < 80" |bc -l) )); then
-		sym="^c#ebcb8b^CPU:^c#eceff4^"
+		sym="^c#ebcb8b^CPU:${DEF_COLOR}"
 	elif (( $(echo "$cpu_percentage_number >= 80" |bc -l)  &&  $(echo "$cpu_percentage_number < 90" |bc -l) )); then
-		sym="^c#bf616a^CPU:^c#eceff4^"
+		sym="^c#bf616a^CPU:${DEF_COLOR}"
 	else
 		blink $HIGH_CPU_IND
 		HIGH_CPU_IND=$?
 		
 		if [ $HIGH_CPU_IND -eq 1 ]; then
-			sym="^c#bf616a^CPU:^c#eceff4^"
+			sym="^c#bf616a^CPU:${DEF_COLOR}"
 		else
-			sym="    ^c#eceff4^"
+			sym="    ${DEF_COLOR}"
 		fi
 	fi
 
@@ -166,22 +166,22 @@ generate_cpu_string(){
 generate_ram_string(){
 	local ram_percentage=$(printf "%.1f" "${1}")
 	if (( $(echo "$ram_percentage < 70" |bc -l) )); then
-		sym="RAM:"
+		sym="${DEF_COLOR}RAM:"
 	elif (( $(echo "$ram_percentage >= 70" |bc -l)  &&  $(echo "$ram_percentage < 80" |bc -l) )); then
 		#sym="\033[0;33mRAM:\033[0m"
-		sym="^c#ebcb8b^RAM:"
+		sym="^c#ebcb8b^RAM:${DEF_COLOR}"
 	elif (( $(echo "$ram_percentage >= 80" |bc -l)  &&  $(echo "$ram_percentage < 90" |bc -l) )); then
 		#sym="\033[0;31mRAM:\033[0m"
-		sym="^c#bf616a^RAM:^c#eceff4^"
+		sym="^c#bf616a^RAM:${DEF_COLOR}"
 	else
 		blink $HIGH_RAM_IND
 		HIGH_RAM_IND=$?
 
 		if [ $HIGH_RAM_IND -eq 1 ]; then
 			#sym="\033[0;31mRAM:\033[0m"
-			sym="^c#bf616a^RAM:^c#eceff4^"
+			sym="^c#bf616a^RAM:${DEF_COLOR}"
 		else
-			sym="    ^c#eceff4^"
+			sym="    ${DEF_COLOR}"
 		fi
 	fi
 	
@@ -198,19 +198,19 @@ generate_hard_string(){
 	local hard_percentage_number="${HARD_R: 0:-1}"
 	
 	if (( $(echo "$hard_percentage_number < 70" |bc -l) )); then
-		sym="^c#eceff4^HARD:"
+		sym="${DEF_COLOR}HARD:"
 	elif (( $(echo "$hard_percentage_number >= 70" |bc -l)  &&  $(echo "$hard_percentage_number < 80" |bc -l) )); then
-		sym="^c#ebcb8b^HARD:^c#eceff4^"
+		sym="^c#ebcb8b^HARD:${DEF_COLOR}"
 	elif (( $(echo "$hard_percentage_number >= 80" |bc -l)  &&  $(echo "$hard_percentage_number < 90" |bc -l) )); then
-		sym="^c#bf616a^HARD:^c#eceff4^"
+		sym="^c#bf616a^HARD:${DEF_COLOR}"
 	else
 		blink $HIGH_HARD_IND
 		HIGH_HARD_IND=$?
 		
 		if [ $HIGH_HARD_IND -eq 1 ]; then
-			sym="^c#bf616a^HARD:^c#eceff4^"
+			sym="^c#bf616a^HARD:${DEF_COLOR}"
 		else
-			sym="     ^c#eceff4^"
+			sym="     ${DEF_COLOR}"
 		fi
 	fi
 
@@ -236,14 +236,14 @@ generate_connection_string () {
 	local transmitted_kb=$((transmitted/125))
 	
 	if (( $(echo "$received_kb < 500" |bc -l) )); then
-		down_measure_sym="^c#eceff4^Kb"
-		down_sym="^c#eceff4^"
+		down_measure_sym="${DEF_COLOR}Kb"
+		down_sym="${DEF_COLOR}"
 	elif (( $(echo "$received_kb >= 500" |bc -l)  &&  $(echo "$received_kb < 1000" |bc -l) )); then
-		down_measure_sym="^c#eceff4^Kb"
-		down_sym="^c#ebcb8b^^c#eceff4^"
+		down_measure_sym="${DEF_COLOR}Kb"
+		down_sym="^c#ebcb8b^${DEF_COLOR}"
 	else
-		down_measure_sym="^c#eceff4^Mb"
-		down_sym="^c#bf616a^^c#eceff4^"
+		down_measure_sym="${DEF_COLOR}Mb"
+		down_sym="^c#bf616a^${DEF_COLOR}"
 		received_kb=$((received_kb/1000))
 	fi
 	
@@ -254,14 +254,14 @@ generate_connection_string () {
 	fi
 	
 	if (( $(echo "$transmitted_kb < 500" |bc -l) )); then
-		up_measure_sym="^c#eceff4^Kb"
-		up_sym="^c#eceff4^"
+		up_measure_sym="${DEF_COLOR}Kb"
+		up_sym="${DEF_COLOR}"
 	elif (( $(echo "$transmitted_kb >= 500" |bc -l)  &&  $(echo "$transmitted_kb < 1000" |bc -l) )); then
-		up_measure_sym="^c#eceff4^Kb"
-		up_sym="^c#ebcb8b^^c#eceff4^"
+		up_measure_sym="${DEF_COLOR}Kb"
+		up_sym="^c#ebcb8b^${DEF_COLOR}"
 	else
-		up_measure_sym="^c#eceff4^Mb"
-		up_sym="^c#bf616a^^c#eceff4^"
+		up_measure_sym="${DEF_COLOR}Mb"
+		up_sym="^c#bf616a^${DEF_COLOR}"
 		transmitted_kb=$((transmitted_kb/1000))
 	fi
 	
@@ -273,18 +273,36 @@ generate_connection_string () {
 	
 	local re='^[0-9]+$'
 	if ! [[ "${ip: 0:1}" =~ $re ]] ; then
-		ip="^c#bf616a^DISCONNECTED      ^c#eceff4^"
+		ip="^c#bf616a^DISCONNECTED      ${DEF_COLOR}"
 	else
-		ip="^c#eceff4^IP: $ip"
+		ip="${DEF_COLOR}IP: $ip"
 	fi
 
 	CONNECTION_STRING="$ip | $up_sym $transmitted_kb $up_measure_sym | $down_sym $received_kb $down_measure_sym"
 }
 
+get_color() {
+	DEF_COLOR=#EEEEEE
+	local FILE=~/.cache/wal/colors.json
+	if test -f "$FILE"; then
+		local colorsjson=$(cat $FILE)
+		local colors=$(echo $colorsjson | jq -r '.colors')
+		local background=$(echo $colors | jq -r '.color1')
+		local background10=$((16$background))
+
+		if [[ $((16#000000 - $background10)) -le $(($background10 - 16#ffffff)) ]]; then
+			DEF_COLOR=#333333
+		fi
+	fi
+	DEF_COLOR=^c${DEF_COLOR}^
+}
+
+
 LOW_CH_IND=0
 HIGH_CPU_IND=0
 HIGH_RAM_IND=0
 HIGH_HARD_IND=0
+
 init_temp_files
 
 date_service
@@ -293,6 +311,7 @@ connection_service
 
 while true; do
 	
+	get_color
 	get_date_stat
 	get_charge_stat
 	get_cpu_stat
@@ -308,5 +327,6 @@ while true; do
 	
 	xsetroot -name "^c#eceff4^ [ $CONNECTION_STRING ] [ $CHARGE_STRING ] [ $HARD_STRING ] [ $RAM_STRING ] [ $CPU_STRING ]   $LOCALTIME "
 	sleep 0.5
+	
 done
 

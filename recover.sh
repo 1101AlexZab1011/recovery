@@ -15,8 +15,8 @@ echo "installing xorg slock base-devel libx11 libxinerama libxft git vim webkit2
 yay -S xorg slock base-devel libx11 libxinerama libxft git vim webkit2gtk dbus libconfig mesa pcre2 libevdev uthash meson ninja acpi sysstat
 echo "installing twmn-git ranger atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie"
 yay -S twmn-git ranger atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie
-echo "installing simplenote brightnessctl imlib2 geany libxext libxcb pixman network-manager-applet "
-yay -S simplenote-electron-bin brightnessctl imlib2 geany libxext libxcb pixman network-manager-applet 
+echo "installing simplenote brightnessctl imlib2 geany libxext libxcb pixman network-manager-applet python-pip python2"
+yay -S simplenote-electron-bin brightnessctl imlib2 geany libxext libxcb pixman network-manager-applet python-pip python2
 
 echo "installing configs for twmn"
 cp $CURRENT_DIR/twmn.conf $USERDIR/.config/twmn/twmn.conf
@@ -34,6 +34,14 @@ chmod +x /usr/local/bin/runnotifier.sh
 echo "installing statusbar.sh"
 cp $CURRENT_DIR/statusbar.sh /usr/local/bin/statusbar.sh
 chmod +x /usr/local/bin/statusbar.sh
+echo "installing downloadnewwp.sh"
+cp $CURRENT_DIR/downloadnewwp.sh /usr/local/bin/downloadnewwp.sh
+chmod +x /usr/local/bin/downloadnewwp.sh
+echo "installing update_wp.sh"
+cp $CURRENT_DIR/update_wp.sh /usr/local/bin/update_wp.sh
+chmod +x /usr/local/bin/update_wp.sh
+echo "installing color2x.py"
+cp $CURRENT_DIR/color2x.py ~/color2x.py
 
 echo "installing alacritty"
 yay -S alacritty
@@ -94,6 +102,7 @@ echo "twmnd&" >> $USERDIR/.xsession
 echo "onliddown.sh&" >> $USERDIR/.xsession
 echo "nm-applet.sh&" >> $USERDIR/.xsession
 echo "statusbar.sh&" >> $USERDIR/.xsession
+echo "updatewp.sh&" >> $USERDIR/.xsession
 
 echo "installing fish and oh-my-fish with bobthefish nord theme"
 yay -S fish
