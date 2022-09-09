@@ -1,31 +1,42 @@
 import json
  
 end_list = []
+
+def gen_font_color(bg_color):
+	bg_color = bg_color.replace('#', '')
+	bg_color_10 = int(bg_color, 16)
+	if int('000000', 16) - bg_color_10 <= bg_color_10 - int('ffffff', 16):
+		return '#333333'
+	else:
+		return '#eeeeee'
  
 with open('/home/user/.cache/wal/colors.json') as file:
 	stock = json.load(file)
- 
-k1 = stock['colors']['color0']
+
+k1 = gen_font_color(stock['colors']['color1'])
+#k1 = stock['colors']['color0']
 k2 = stock['colors']['color1']
 k3 = stock['colors']['color2']
 k4 = stock['colors']['color3']
-k5 = stock['colors']['color4']
+#k5 = stock['colors']['color4']
+k5 = gen_font_color(stock['colors']['color7'])
 k6 = stock['colors']['color5'] 
 k7 = stock['colors']['color6'] 
 k8 = stock['colors']['color7']
-k9 = stock['colors']['color0']
+#k9 = stock['colors']['color0']
+k9 = k1
  
+#list1 = ["dwm.normfgcolor: ", "dwm.titlenormfgcolor: ", "dwm.tagsnormfgcolor: ", "dwm.urgfgcolor: ", ]
+list1 = ["dwm.normfgcolor: ", "dwm.titlenormfgcolor: ", "dwm.tagsnormfgcolor: "]
  
-list1 = ["dwm.normfgcolor: ", "dwm.titlenormfgcolor: ", "dwm.tagsnormfgcolor: ", "dwm.urgfgcolor: ", ]
+list2 = ["dwm.normbgcolor: ", "dwm.titlenormbgcolor: ", "dwm.tagsnormbgcolor: ", "dwm.hidnormbgcolor: ", "dwm.hidselbgcolor: ", "dwm.urgbgcolor: ", "dwm.selfgcolor: "]
  
-list2 = ["dwm.normbgcolor: ", "dwm.titlenormbgcolor: ", "dwm.tagsnormbgcolor: ", "dwm.hidnormbgcolor: ", "dwm.hidselbgcolor: ", "dwm.urgbgcolor: "]
- 
-list3 = ["dwm.normbordercolor: ", "dwm.titlenormbordercolor: ", "dwm.tagsnormbordercolor: ", "dwm.selfgcolor: "]
+list3 = ["dwm.normbordercolor: ", "dwm.titlenormbordercolor: ", "dwm.tagsnormbordercolor: "]
  
 list4 = ["dwm.normfloatcolor: ", "dwm.titlenormfloatcolor: ", "dwm.tagsnormfloatcolor: ", "dwm.urgfloatcolor: "]
  
 # list5 = ["dwm.selfgcolor: "]
-list5 = []
+list5 = ["dwm.urgfgcolor: ",]
  
 list6 = ["dwm.selbgcolor: ", "dwm.selbordercolor: ", "dwm.selfloatcolor: ", "dwm.titleselbgcolor: ", "dwm.titleselbordercolor: ", "dwm.titleselfloatcolor: ", "dwm.tagsselbgcolor: ", "dwm.tagsselbordercolor: ", "dwm.tagsselfloatcolor: ", "dwm.hidnormfgcolor: "]
  
