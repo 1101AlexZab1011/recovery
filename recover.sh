@@ -37,9 +37,9 @@ chmod +x /usr/local/bin/statusbar.sh
 echo "installing downloadnewwp.sh"
 cp $CURRENT_DIR/downloadnewwp.sh /usr/local/bin/downloadnewwp.sh
 chmod +x /usr/local/bin/downloadnewwp.sh
-echo "installing update_wp.sh"
-cp $CURRENT_DIR/update_wp.sh /usr/local/bin/update_wp.sh
-chmod +x /usr/local/bin/update_wp.sh
+echo "installing upwp.sh"
+cp $CURRENT_DIR/update_wp.sh /usr/local/bin/upwp.sh
+chmod +x /usr/local/bin/upwp.sh
 echo "installing color2x.py"
 cp $CURRENT_DIR/color2x.py ~/color2x.py
 

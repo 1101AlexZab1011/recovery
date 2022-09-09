@@ -1,7 +1,4 @@
-#!/bin/bash
-
-WPATH=${WALLPAPER_PATH:-"$HOME/Pictures/Wallpapers"}
-mkdir -p $WPATH
+#! /bin/bash
 
 get_image() {
 	tempip=$(echo $(curl -m 1 ifconfig.me))
@@ -19,15 +16,17 @@ get_image() {
 	fi
 }
 
+WPATH=${WALLPAPER_PATH:-"$HOME/Pictures/Wallpapers"}
+mkdir -p $WPATH
 
 
 while true
 do
 	get_image
-	 ~/.local/bin/wal -i $IMGPATH -s
+	~/.local/bin/wal -i $IMGPATH -s
 	python3 /home/user/color2x.py 
 	xrdb -merge /home/user/.Xresources 
-	xdotool key shift+Super+F5 
-	pywalfox update 
+	xdotool key shift+Super+F5
+	pywalfox update
 	sleep 15m
 done
