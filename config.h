@@ -124,7 +124,7 @@ static const int ulineall = 0;                  /* 1 to show underline on all ta
 #endif // NAMETAG_PATCH
 
 /* Indicators: see patch/bar_indicators.h for options */
-static int tagindicatortype              = INDICATOR_TOP_LEFT_SQUARE;
+static int tagindicatortype              = INDICATOR_BOTTOM_BAR; // = INDICATOR_TOP_LEFT_SQUARE;
 static int tiledindicatortype            = INDICATOR_NONE;
 static int floatindicatortype            = INDICATOR_TOP_LEFT_SQUARE;
 #if FAKEFULLSCREEN_CLIENT_PATCH && !FAKEFULLSCREEN_PATCH
@@ -867,6 +867,11 @@ static const char *volumeup[] = {"amixer", "set", "Master", "5%+", NULL};
 static const char *volumedown[] = {"amixer", "set", "Master", "5%-", NULL};
 static const char *volumetoggle[] = {"amixer", "set", "Master", "toggle", NULL};
 
+// screenshot command
+static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
+//update wp
+static const char *upwpcmd[] = { "upwp_once.sh", NULL };
+
 #if BAR_STATUSCMD_PATCH
 #if BAR_DWMBLOCKS_PATCH
 /* This defines the name of the executable that handles the bar (used for signalling purposes) */
@@ -895,6 +900,8 @@ static const Key on_empty_keys[] = {
 
 static const Key keys[] = {
 	/* modifier                     key            function                argument */
+	// screenshots
+	{0,               XK_Print,	  spawn,   				   {.v = screenshotcmd} },
 	// control brightness
 	{0,               XF86XK_MonBrightnessUp,	  spawn,   				   {.v = brightnessup} },
 	{0,             XF86XK_MonBrightnessDown, 	  spawn,				   {.v = brightnessdown} },
@@ -902,6 +909,8 @@ static const Key keys[] = {
 	{0,       		 XF86XK_AudioRaiseVolume, 	  spawn,   				   {.v=volumeup} },
     {0,       		 XF86XK_AudioLowerVolume, 	  spawn,   				   {.v=volumedown} },
     {0,       			    XF86XK_AudioMute,     spawn,   				   {.v=volumetoggle} },
+	//update wp
+	{MODKEY|ShiftMask,       			    XK_w,     spawn,   				   {.v=upwpcmd} },
 	#if KEYMODES_PATCH
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },
 	#endif // KEYMODES_PATCH

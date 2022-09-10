@@ -40,6 +40,9 @@ chmod +x /usr/local/bin/downloadnewwp.sh
 echo "installing upwp.sh"
 cp $CURRENT_DIR/upwp.sh /usr/local/bin/upwp.sh
 chmod +x /usr/local/bin/upwp.sh
+echo "installing upwp_once.sh"
+cp $CURRENT_DIR/upwp_once.sh /usr/local/bin/upwp_once.sh
+chmod +x /usr/local/bin/upwp_once.sh
 echo "installing colorpicker.sh"
 cp $CURRENT_DIR/colorpicker.sh /usr/local/bin/colorpicker.sh
 chmod +x /usr/local/bin/colorpicker.sh
@@ -108,7 +111,7 @@ echo "onliddown.sh&" >> $USERDIR/.xsession
 echo "nm-applet.sh&" >> $USERDIR/.xsession
 echo "statusbar.sh&" >> $USERDIR/.xsession
 echo "uwp.sh&" >> $USERDIR/.xsession
-echo "conky -c ~/.config/conky/config.conkyrc" >> $USERDIR/.xsession
+echo "conky -c ~/.config/conky/config.conkyrc&" >> $USERDIR/.xsession
 
 echo "installing fish and oh-my-fish with bobthefish nord theme"
 yay -S fish
