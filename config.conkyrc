@@ -1,0 +1,416 @@
+--[[
+#=====================================================================================
+#                               arcolinux
+#
+# Author  : Erik Dubois at http://www.erikdubois.be
+# License : Distributed under the terms of GNU GPL version 2 or later
+# Documentation : http://erikdubois.be/category/linux/aureola/
+#======================================================================================
+
+
+]]
+
+conky.config = {
+
+	--Various settings
+
+	background = true, 							-- forked to background
+	cpu_avg_samples = 2,						-- The number of samples to average for CPU monitoring.
+	diskio_avg_samples = 10,					-- The number of samples to average for disk I/O monitoring.
+	double_buffer = true,						-- Use the Xdbe extension? (eliminates flicker)
+	if_up_strictness = 'address',				-- how strict if testing interface is up - up, link or address
+	net_avg_samples = 2,						-- The number of samples to average for net data
+	no_buffers = true,							-- Subtract (file system) buffers from used memory?
+	temperature_unit = 'celsius',				-- fahrenheit or celsius
+	text_buffer_size = 2048,					-- size of buffer for display of content of large variables - default 256
+	update_interval = 1,						-- update interval
+	imlib_cache_size = 0,                       -- disable image cache to get a new spotify cover per song
+
+
+	--Placement
+
+	alignment = 'top_right',					-- top-left,top-middle,top-right,bottom-left,bottom-middle,bottom-right,
+												-- middle-left,middle-middle,middle-right,none
+	--Arch Duoscreen
+	--gap_x = -1910,
+	gap_x = 20,									-- pixels between right or left border
+	gap_y = 20,									-- pixels between bottom or left border
+	minimum_height = 200,						-- minimum height of window
+	minimum_width = 500,						-- minimum height of window
+	maximum_width = 500,						-- maximum height of window
+
+	--Graphical
+
+	border_inner_margin = 5, 					-- margin between border and text
+	border_outer_margin = 5, 					-- margin between border and edge of window
+	border_width = 0, 							-- border width in pixels
+	default_bar_width = 280,					-- default is 0 - full width
+	default_bar_height = 10,					-- default is 6
+	default_gauge_height = 25,					-- default is 25
+	default_gauge_width =40,					-- default is 40
+	default_graph_height = 40,					-- default is 25
+	default_graph_width = 153,					-- default is 0 - full width
+	default_shade_color = '#000000',			-- default shading colour
+	default_outline_color = '#000000',			-- default outline colour
+	draw_borders = false,						-- draw borders around text
+	draw_graph_borders = true,					-- draw borders around graphs
+	draw_shades = false,						-- draw shades
+	draw_outline = false,						-- draw outline
+	stippled_borders = 0,						-- dashing the border
+
+	--Textual
+
+	extra_newline = false,						-- extra newline at the end - for asesome's wiboxes
+	format_human_readable = true,				-- KiB, MiB rather then number of bytes
+	font = 'Ubuntu:size=12:regular',  			-- font for complete conky unless in code defined
+	max_text_width = 0,							-- 0 will make sure line does not get broken if width too smal
+	max_user_text = 16384,						-- max text in conky default 16384
+	override_utf8_locale = true,				-- force UTF8 requires xft
+	short_units = true,							-- shorten units from KiB to k
+	top_name_width = 21,						-- width for $top name value default 15
+	top_name_verbose = false,					-- If true, top name shows the full command line of  each  process - Default value is false.
+	uppercase = false,							-- uppercase or not
+	use_spacer = 'none',						-- adds spaces around certain objects to align - default none
+	use_xft = true,								-- xft font - anti-aliased font
+	xftalpha = 1,								-- alpha of the xft font - between 0-1
+
+	--Windows
+
+	own_window = true,							-- create your own window to draw
+	own_window_argb_value = 150,				    -- real transparency - composite manager required 0-255
+	own_window_argb_visual = false,				-- use ARGB - composite manager required
+	own_window_class = 'Conky',					-- manually set the WM_CLASS name for use with xprop
+	own_window_colour = '#000000',				-- set colour if own_window_transparent no
+	own_window_hints = 'undecorated,below,above,sticky,skip_taskbar,skip_pager',  -- if own_window true - just hints - own_window_type sets it
+	own_window_transparent = true,				-- if own_window_argb_visual is true sets background opacity 0%
+	own_window_title = 'system_conky',			-- set the name manually  - default conky hostname
+	own_window_type = 'override',				    -- if own_window true options are: normal/override/dock/desktop/panel
+
+
+	--Colours
+
+	default_color = '#ff0000',  				-- default color and border color
+	color1 = '#333333',							-- color for text
+	color2 = '#c5d5d8',							-- lightblue 
+	color3 = '#CEBBA2',							-- lightgreen ok
+	color4 = '#D2B48E',							-- lightyellow normal
+	color5 = '#A6ADA9',							-- yellow not ok
+	color6 = '#75B0C1',							-- orange bad
+	color7 = '#5FA0B7',  						-- lightred critical
+	color8 = '#D2B48E', 						-- orange from
+	color9 = '#75B0C1',  						-- firebrick to
+
+
+	--Lua
+
+
+};
+conky.text = [[
+${voffset -1}
+${color1}${alignc}S Y S T E M    I N F O${color}
+${color1}${hr}${color}
+${voffset -15}
+${color1}Host:${alignr}${color2}${nodename}${color}
+${color1}Kernel:${color2}${alignr}$kernel${color}
+${color1}Uptime:${color2}${alignr}${uptime}${color}
+#${color1}UTC:${color2}${alignr}${utime %H:%M}${color}
+${color1}Battery:${voffset 3}\
+${if_match ${battery_percent}<20}\
+	${goto 100}${color7}${battery_bar 8, 340}\
+${else}${if_match ${battery_percent}<50}\
+	${goto 100}${color6}${battery_bar 8, 340}\
+${else}${if_match ${battery_percent}<75}\
+	${goto 100}${color5}${battery_bar 8, 340}\
+${else}${if_match ${battery_percent}<85}\
+	${goto 100}${color4}${battery_bar 8, 340}\
+${else}${if_match ${battery_percent}>=85}\
+	${goto 100}${color3}${battery_bar 8, 340}\
+${endif}${endif}${endif}${endif}${endif}\
+${alignr}${color}${voffset -3}\
+${color2}${battery_short}${color2}
+${color1}Left:${alignr}${color2}${battery_time}${color}
+
+##########################################################################################
+${voffset -30}
+${color1}${alignc}N E T W O R K${color}
+${color1}${hr}${color}
+${voffset -15}
+${color1}IP:${alignr}${color2}${gw_ip}${color}
+${color1}Interface:${alignr}${color2}${gw_iface}${color}
+#${upspeedf wlp1s0}
+#${downspeedf wlp1s0}
+#${upspeedgraph wlp1s0 20,60 -l}$alignr${downspeedgraph wlp1s0 20, 60 -l}
+
+${color1}UP:${goto 89}${voffset -21}\
+${if_match ${upspeedf wlp1s0}<25}\
+	${color3}${upspeedgraph wlp1s0 50, 339 D2B48E 75B0C1 -l}\
+${else}${if_match ${upspeedf wlp1s0}<50}\
+	${color4}${upspeedgraph wlp1s0 50, 339 D2B48E 75B0C1 -l}\
+${else}${if_match ${upspeedf wlp1s0}<75}\
+	${color5}${upspeedgraph wlp1s0 50, 339 D2B48E 75B0C1 -l}\
+${else}${if_match ${upspeedf wlp1s0}<85}\
+	${color6}${upspeedgraph wlp1s0 50, 339 D2B48E 75B0C1 -l}\
+${else}${if_match ${upspeedf wlp1s0}>=85}\
+	${color7}${upspeedgraph wlp1s0 50, 339 D2B48E 75B0C1 -l}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset 21}${color2}${alignr}${upspeedf wlp1s0}KiB${alignr}${color}
+
+${voffset -30}
+${color1}DOWN:${goto 89}${voffset -21}\
+${if_match ${downspeedf wlp1s0}<25}\
+	${color3}${downspeedgraph wlp1s0 50, 339 D2B48E 75B0C1 -l}\
+${else}${if_match ${downspeedf wlp1s0}<50}\
+	${color4}${downspeedgraph wlp1s0 50, 339 D2B48E 75B0C1 -l}\
+${else}${if_match ${downspeedf wlp1s0}<75}\
+	${color5}${downspeedgraph wlp1s0 50, 339 D2B48E 75B0C1 -l}\
+${else}${if_match ${downspeedf wlp1s0}<85}\
+	${color6}${downspeedgraph wlp1s0 50, 339 D2B48E 75B0C1 -l}\
+${else}${if_match ${downspeedf wlp1s0}>=85}\
+	${color7}${downspeedgraph wlp1s0 50, 339 D2B48E 75B0C1 -l}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset 21}${color2}${alignr}${downspeedf wlp1s0}KiB${alignr}${color}
+
+##########################################################################################
+${voffset -40}
+${color1}${alignc}M E M O R Y    U S A G E:${color}
+${color1}${hr}${color}
+${voffset -15}
+${color1}File system:${alignr}${color2}${fs_type /}${color}
+${color1}Size:${alignr}${color2}${fs_size /}${color}
+${color1}Used:${alignr}${color2}${fs_used /}${color}
+
+${color1}HARD:${voffset 3}\
+${if_match ${fs_used_perc /}<25}\
+	${goto 97}${color3}${fs_bar 8, 349 /}\
+${else}${if_match ${fs_used_perc /}<50}\
+	${goto 97}${color4}${fs_bar 8, 349 /}\
+${else}${if_match ${fs_used_perc /}<75}\
+	${goto 97}${color5}${fs_bar 8, 349 /}\
+${else}${if_match ${fs_used_perc /}<85}\
+	${goto 97}${color6}${fs_bar 8, 349 /}\
+${else}${if_match ${fs_used_perc /}>=85}\
+	${goto 97}${color7}${fs_bar 8, 349 /}\
+${endif}${endif}${endif}${endif}${endif}\
+${alignr}${color}${voffset -3}\
+${color2}${fs_used_perc /}%${color2}
+
+${color1}RAM:${goto 89}${voffset -21}\
+${if_match ${memperc}<25}\
+	${color3}${memgraph 50, 349 D2B48E 75B0C1 -l}\
+${else}${if_match ${memperc}<50}\
+	${color4}${memgraph 50, 349 D2B48E 75B0C1 -l}\
+${else}${if_match ${memperc}<75}\
+	${color5}${memgraph 50, 349 D2B48E 75B0C1 -l}\
+${else}${if_match ${memperc}<85}\
+	${color6}${memgraph 50, 349 D2B48E 75B0C1 -l}\
+${else}${if_match ${memperc}>=85}\
+	${color7}${memgraph 50, 349 D2B48E 75B0C1 -l}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset 21}${color2}${alignr}${memperc}%${alignr}${color}
+#${color1}Swap${goto 100}${color2}${swap}${alignr}${swapmax}${color}
+${voffset -50}
+
+##########################################################################################
+
+${color1}${alignc}C P U    U S A G E${color}
+${color1}${hr}${color}
+
+${color1}AVG:${goto 89}${voffset -21}\
+${if_match ${cpu cpu0}<25}\
+	${color3}${cpugraph cpu0 50, 349 D2B48E 75B0C1 -l}\
+${else}${if_match ${cpu cpu0}<50}\
+	${color4}${cpugraph cpu0 50, 349 D2B48E 75B0C1 -l}\
+${else}${if_match ${cpu cpu0}<75}\
+	${color5}${cpugraph cpu0 50, 349 D2B48E 75B0C1 -l}\
+${else}${if_match ${cpu cpu0}<85}\
+	${color6}${cpugraph cpu0 50, 349 D2B48E 75B0C1 -l}\
+${else}${if_match ${cpu cpu0}>=85}\
+	${color7}${cpugraph cpu0 50, 349 D2B48E 75B0C1 -l}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset 21}${color2}${alignr}${cpu cpu0}%${alignr}${color}
+
+#
+${voffset -40}${color1}CPU1:${goto 89}${voffset 3}\
+${if_match ${cpu cpu1}<25}\
+	${color3}${cpubar cpu1 8, 260}\
+${else}${if_match ${cpu cpu1}<50}\
+	${color4}${cpubar cpu1 8, 260}\
+${else}${if_match ${cpu cpu1}<75}\
+	${color5}${cpubar cpu1 8, 260}\
+${else}${if_match ${cpu cpu1}<85}\
+	${color6}${cpubar cpu1 8, 260}\
+${else}${if_match ${cpu cpu1}>=85}\
+	${color7}${cpubar cpu1 8, 260}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset -3}${color2}${goto 380}${cpu cpu1}%${alignr}${freq_g 1}GHz${color}
+#
+${color1}CPU2:${goto 89}${voffset 3}\
+${if_match ${cpu cpu2}<25}\
+	${color3}${cpubar cpu2 8, 260}\
+${else}${if_match ${cpu cpu2}<50}\
+	${color4}${cpubar cpu2 8, 260}\
+${else}${if_match ${cpu cpu2}<75}\
+	${color5}${cpubar cpu2 8, 260}\
+${else}${if_match ${cpu cpu2}<85}\
+	${color6}${cpubar cpu2 8, 260}\
+${else}${if_match ${cpu cpu2}>=85}\
+	${color7}${cpubar cpu2 8, 260}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset -3}${color2}${goto 380}${cpu cpu2}%${alignr}${freq_g 2}GHz${color}
+#
+${color1}CPU3:${goto 89}${voffset 3}\
+${if_match ${cpu cpu3}<25}\
+	${color3}${cpubar cpu3 8, 260}\
+${else}${if_match ${cpu cpu3}<50}\
+	${color4}${cpubar cpu3 8, 260}\
+${else}${if_match ${cpu cpu3}<75}\
+	${color5}${cpubar cpu3 8, 260}\
+${else}${if_match ${cpu cpu3}<85}\
+	${color6}${cpubar cpu3 8, 260}\
+${else}${if_match ${cpu cpu3}>=85}\
+	${color7}${cpubar cpu3 8, 260}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset -3}${color2}${goto 380}${cpu cpu3}%${alignr}${freq_g 3}GHz${color}
+${color1}CPU4:${goto 89}${voffset 3}\
+${if_match ${cpu cpu4}<25}\
+	${color3}${cpubar cpu4 8, 260}\
+${else}${if_match ${cpu cpu4}<50}\
+	${color4}${cpubar cpu4 8, 260}\
+${else}${if_match ${cpu cpu4}<75}\
+	${color5}${cpubar cpu4 8, 260}\
+${else}${if_match ${cpu cpu4}<85}\
+	${color6}${cpubar cpu4 8, 260}\
+${else}${if_match ${cpu cpu4}>=85}\
+	${color7}${cpubar cpu4 8, 260}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset -3}${color2}${goto 380}${cpu cpu4}%${alignr}${freq_g 4}GHz${color}
+#
+${color1}CPU5:${goto 89}${voffset 3}\
+${if_match ${cpu cpu5}<25}\
+	${color3}${cpubar cpu5 8, 260}\
+${else}${if_match ${cpu cpu5}<50}\
+	${color4}${cpubar cpu5 8, 260}\
+${else}${if_match ${cpu cpu5}<75}\
+	${color5}${cpubar cpu5 8, 260}\
+${else}${if_match ${cpu cpu5}<85}\
+	${color6}${cpubar cpu5 8, 260}\
+${else}${if_match ${cpu cpu5}>=85}\
+	${color7}${cpubar cpu5 8, 260}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset -3}${color2}${goto 380}${cpu cpu5}%${alignr}${freq_g 5}GHz${color}
+#
+${color1}CPU6:${goto 89}${voffset 3}\
+${if_match ${cpu cpu6}<25}\
+	${color3}${cpubar cpu6 8, 260}\
+${else}${if_match ${cpu cpu6}<50}\
+	${color4}${cpubar cpu6 8, 260}\
+${else}${if_match ${cpu cpu6}<75}\
+	${color5}${cpubar cpu6 8, 260}\
+${else}${if_match ${cpu cpu6}<85}\
+	${color6}${cpubar cpu6 8, 260}\
+${else}${if_match ${cpu cpu6}>=85}\
+	${color7}${cpubar cpu6 8, 260}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset -3}${color2}${goto 380}${cpu cpu6}%${alignr}${freq_g 6}GHz${color}
+#
+${color1}CPU7:${goto 89}${voffset 3}\
+${if_match ${cpu cpu7}<25}\
+	${color3}${cpubar cpu7 8, 260}\
+${else}${if_match ${cpu cpu7}<50}\
+	${color4}${cpubar cpu7 8, 260}\
+${else}${if_match ${cpu cpu7}<75}\
+	${color5}${cpubar cpu7 8, 260}\
+${else}${if_match ${cpu cpu7}<85}\
+	${color6}${cpubar cpu7 8, 260}\
+${else}${if_match ${cpu cpu7}>=85}\
+	${color7}${cpubar cpu7 8, 260}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset -3}${color2}${goto 380}${cpu cpu7}%${alignr}${freq_g 7}GHz${color}
+#
+${color1}CPU8:${goto 89}${voffset 3}\
+${if_match ${cpu cpu8}<25}\
+	${color3}${cpubar cpu8 8, 260}\
+${else}${if_match ${cpu cpu8}<50}\
+	${color4}${cpubar cpu8 8, 260}\
+${else}${if_match ${cpu cpu8}<75}\
+	${color5}${cpubar cpu8 8, 260}\
+${else}${if_match ${cpu cpu8}<85}\
+	${color6}${cpubar cpu8 8, 260}\
+${else}${if_match ${cpu cpu8}>=85}\
+	${color7}${cpubar cpu8 8, 260}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset -3}${color2}${goto 380}${cpu cpu8}%${alignr}${freq_g 8}GHz${color}
+#
+${color1}CPU9:${goto 89}${voffset 3}\
+${if_match ${cpu cpu9}<25}\
+	${color3}${cpubar cpu9 8, 260}\
+${else}${if_match ${cpu cpu9}<50}\
+	${color4}${cpubar cpu9 8, 260}\
+${else}${if_match ${cpu cpu9}<75}\
+	${color5}${cpubar cpu9 8, 260}\
+${else}${if_match ${cpu cpu9}<85}\
+	${color6}${cpubar cpu9 8, 260}\
+${else}${if_match ${cpu cpu9}>=85}\
+	${color7}${cpubar cpu9 8, 260}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset -3}${color2}${goto 380}${cpu cpu9}%${alignr}${freq_g 9}GHz${color}
+#
+${color1}CPU10:${goto 89}${voffset 3}\
+${if_match ${cpu cpu10}<25}\
+	${color3}${cpubar cpu10 8, 260}\
+${else}${if_match ${cpu cpu10}<50}\
+	${color4}${cpubar cpu10 8, 260}\
+${else}${if_match ${cpu cpu10}<75}\
+	${color5}${cpubar cpu10 8, 260}\
+${else}${if_match ${cpu cpu10}<85}\
+	${color6}${cpubar cpu10 8, 260}\
+${else}${if_match ${cpu cpu10}>=85}\
+	${color7}${cpubar cpu10 8, 260}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset -3}${color2}${goto 380}${cpu cpu10}%${alignr}${freq_g 10}GHz${color}
+#
+${color1}CPU11:${goto 89}${voffset 3}\
+${if_match ${cpu cpu11}<25}\
+	${color3}${cpubar cpu11 8, 260}\
+${else}${if_match ${cpu cpu11}<50}\
+	${color4}${cpubar cpu11 8, 260}\
+${else}${if_match ${cpu cpu11}<75}\
+	${color5}${cpubar cpu11 8, 260}\
+${else}${if_match ${cpu cpu11}<85}\
+	${color6}${cpubar cpu11 8, 260}\
+${else}${if_match ${cpu cpu11}>=85}\
+	${color7}${cpubar cpu11 8, 260}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset -3}${color2}${goto 380}${cpu cpu11}%${alignr}${freq_g 11}GHz${color}
+#
+${color1}CPU12:${goto 89}${voffset 3}\
+${if_match ${cpu cpu12}<25}\
+	${color3}${cpubar cpu12 8, 260}\
+${else}${if_match ${cpu cpu12}<50}\
+	${color4}${cpubar cpu12 8, 260}\
+${else}${if_match ${cpu cpu12}<75}\
+	${color5}${cpubar cpu12 8, 260}\
+${else}${if_match ${cpu cpu12}<85}\
+	${color6}${cpubar cpu12 8, 260}\
+${else}${if_match ${cpu cpu12}>=85}\
+	${color7}${cpubar cpu12 8, 260}\
+${endif}${endif}${endif}${endif}${endif}\
+${color}\
+${voffset -3}${color2}${goto 380}${cpu cpu12}%${alignr}${freq_g 12}GHz${color}
+
+]];

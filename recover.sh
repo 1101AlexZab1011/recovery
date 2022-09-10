@@ -15,8 +15,8 @@ echo "installing xorg slock base-devel libx11 libxinerama libxft git vim webkit2
 yay -S xorg slock base-devel libx11 libxinerama libxft git vim webkit2gtk dbus libconfig mesa pcre2 libevdev uthash meson ninja acpi sysstat
 echo "installing twmn-git ranger atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie"
 yay -S twmn-git ranger atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie
-echo "installing simplenote brightnessctl imlib2 geany libxext libxcb pixman network-manager-applet python-pip python2"
-yay -S simplenote-electron-bin brightnessctl imlib2 geany libxext libxcb pixman network-manager-applet python-pip python2
+echo "installing simplenote brightnessctl imlib2 geany libxext libxcb pixman network-manager-applet python-pip python2 conky"
+yay -S simplenote-electron-bin brightnessctl imlib2 geany libxext libxcb pixman network-manager-applet python-pip python2 conky
 
 echo "installing configs for twmn"
 cp $CURRENT_DIR/twmn.conf $USERDIR/.config/twmn/twmn.conf
@@ -38,10 +38,15 @@ echo "installing downloadnewwp.sh"
 cp $CURRENT_DIR/downloadnewwp.sh /usr/local/bin/downloadnewwp.sh
 chmod +x /usr/local/bin/downloadnewwp.sh
 echo "installing upwp.sh"
-cp $CURRENT_DIR/update_wp.sh /usr/local/bin/upwp.sh
+cp $CURRENT_DIR/upwp.sh /usr/local/bin/upwp.sh
 chmod +x /usr/local/bin/upwp.sh
+echo "installing colorpicker.sh"
+cp $CURRENT_DIR/colorpicker.sh /usr/local/bin/colorpicker.sh
+chmod +x /usr/local/bin/colorpicker.sh
 echo "installing color2x.py"
 cp $CURRENT_DIR/color2x.py ~/color2x.py
+echo "installing user-defined.conkyrc"
+cp $CURRENT_DIR/user-defined.conkyrc ~/.config/conky/user-defined.conkyrc
 
 echo "installing alacritty"
 yay -S alacritty
@@ -102,7 +107,8 @@ echo "twmnd&" >> $USERDIR/.xsession
 echo "onliddown.sh&" >> $USERDIR/.xsession
 echo "nm-applet.sh&" >> $USERDIR/.xsession
 echo "statusbar.sh&" >> $USERDIR/.xsession
-echo "updatewp.sh&" >> $USERDIR/.xsession
+echo "uwp.sh&" >> $USERDIR/.xsession
+echo "conky -c ~/.config/conky/config.conkyrc" >> $USERDIR/.xsession
 
 echo "installing fish and oh-my-fish with bobthefish nord theme"
 yay -S fish

@@ -91,6 +91,10 @@ get_hard_stat() {
 	HARD_R=${HARD_STATUS_ALL[4]}
 }
 
+get_temp_stat () {
+    TEMP_STAT=($(sensors | head -n 7 | tail -n 1))
+    TEMP_STAT=${TEMP_STAT[1]: 1}
+}
 
 generate_charge_string () {
 	local charge_status=$1
@@ -281,6 +285,37 @@ generate_connection_string () {
 	CONNECTION_STRING="$ip | $up_sym $transmitted_kb $up_measure_sym | $down_sym $received_kb $down_measure_sym"
 }
 
+generate_temp_string(){
+	local temp_degrees=$1
+	local temp_degrees_number="${temp_degrees: 0:-2}"
+	
+	if (( $(echo "$temp_degrees_number < 40" |bc -l) )); then
+		sym="${DEF_COLOR}"
+	elif (( $(echo "$temp_degrees_number >= 40" |bc -l)  &&  $(echo "$temp_degrees_number < 50" |bc -l) )); then
+		sym="${DEF_COLOR}"
+	elif (( $(echo "$temp_degrees_number >= 50" |bc -l)  &&  $(echo "$temp_degrees_number < 55" |bc -l) )); then
+		sym="^c#ebcb8b^${DEF_COLOR}"
+	elif (( $(echo "$temp_degrees_number >= 55" |bc -l)  &&  $(echo "$temp_degrees_number < 60" |bc -l) )); then
+		sym="^c#bf616a${DEF_COLOR}"
+	else
+		blink $HIGH_T_IND
+		HIGH_T_IND=$?
+		
+		if [ $HIGH_T_IND -eq 1 ]; then
+			sym="^c#bf616a^CPU:${DEF_COLOR}"
+		else
+			sym="    ${DEF_COLOR}"
+		fi
+	fi
+
+	if [ $(expr length $temp_degrees) -lt 6 ]; then
+		temp_degrees=" $temp_degrees "
+	fi
+	
+	TEMP_STRING="$sym $temp_degrees"
+}
+
+
 get_color() {
 	DEF_COLOR=#EEEEEE
 	local FILE=~/.cache/wal/colors.json
@@ -288,11 +323,8 @@ get_color() {
 		local colorsjson=$(cat $FILE)
 		local colors=$(echo $colorsjson | jq -r '.colors')
 		local background=$(echo $colors | jq -r '.color1')
-		local background10=$((16$background))
-
-		if [[ $((16#000000 - $background10)) -le $(($background10 - 16#ffffff)) ]]; then
-			DEF_COLOR=#333333
-		fi
+		background=${background: 1}
+		DEF_COLOR="#$(colorpicker.sh $background)"
 	fi
 	DEF_COLOR=^c${DEF_COLOR}^
 }
@@ -302,8 +334,9 @@ LOW_CH_IND=0
 HIGH_CPU_IND=0
 HIGH_RAM_IND=0
 HIGH_HARD_IND=0
+HIGH_T_IND=0
 
-init_temp_files
+# init_temp_files
 
 date_service
 cpu_service
@@ -318,14 +351,17 @@ while true; do
 	get_ram_stat
 	get_hard_stat
 	get_connection_stat
+	get_temp_stat
 	
 	generate_charge_string "$CHARGE_STATUS" "$CHARGE_AMOUNT" "$CHARGE_REMAINING"
 	generate_cpu_string "${CPU_USAGE}"
 	generate_ram_string "$RAM_R"
 	generate_hard_string "$HARD_R" "$HARD_AVAIL"
 	generate_connection_string "$IP" "$RECEIVED" "$TRANSMITTED"
+	generate_temp_string "$TEMP_STAT"
 	
-	xsetroot -name "^c#eceff4^ [ $CONNECTION_STRING ] [ $CHARGE_STRING ] [ $HARD_STRING ] [ $RAM_STRING ] [ $CPU_STRING ]   $LOCALTIME "
+	xsetroot -name "${DEF_COLOR} [ $CONNECTION_STRING ] [ $CHARGE_STRING ] [ $HARD_STRING ] [ $RAM_STRING ] [ $CPU_STRING | $TEMP_STRING ]   $LOCALTIME "
+	
 	sleep 0.5
 	
 done
