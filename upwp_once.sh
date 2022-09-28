@@ -18,10 +18,39 @@ get_image() {
 
 WPATH=${WALLPAPER_PATH:-"$HOME/Pictures/Wallpapers"}
 mkdir -p $WPATH
+HISTORYPATH=$HOME/.cache/wplist.log
+touch $HISTORYPATH
+printf "%s" "$(cat $HISTORYPATH | tail -n 1000)" > $HISTORYPATH
+echo "" >> $HISTORYPATH
 
-get_image
-~/.local/bin/wal -i $IMGPATH -s
-python3 /home/user/color2x.py 
-xrdb -merge /home/user/.Xresources 
-xdotool key shift+Super+F5
-pywalfox update
+
+while true
+do
+	get_image
+	exists=$(grep "$IMGPATH" $HISTORYPATH)
+	
+	#if [ ! -z "$exists" ]; then
+	#	if [ ! $CONNECTED ]; then
+	#		~/.local/bin/wal -i $IMGPATH -s
+	#		python3 /home/user/color2x.py 
+	#		xrdb -merge /home/user/.Xresources 
+	#		xdotool key shift+Super+F5
+	#		pywalfox update
+	#		# wal-telegram --wal
+	#		echo "$IMGPATH" >> $HISTORYPATH
+	#		break
+	#	else
+	#		echo "Connected and file exists: $IMGPATH"
+	#		echo $exists
+	#	fi
+	#else
+		~/.local/bin/wal -i $IMGPATH -s
+		python3 /home/user/color2x.py 
+		xrdb -merge /home/user/.Xresources 
+		xdotool key shift+Super+F5
+		pywalfox update
+		# wal-telegram --wal
+		echo "$IMGPATH" >> $HISTORYPATH
+		break
+	#fi
+done

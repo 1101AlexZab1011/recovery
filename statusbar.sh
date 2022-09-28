@@ -141,30 +141,34 @@ generate_charge_string () {
 
 generate_cpu_string(){
 	local cpu_percentage=$1
-	local cpu_percentage_number="${cpu_percentage: 0:-1}"
+	local length=${#cpu_percentage}
 	
-	if (( $(echo "$cpu_percentage_number < 70" |bc -l) )); then
-		sym="${DEF_COLOR}CPU:"
-	elif (( $(echo "$cpu_percentage_number >= 70" |bc -l)  &&  $(echo "$cpu_percentage_number < 80" |bc -l) )); then
-		sym="^c#ebcb8b^CPU:${DEF_COLOR}"
-	elif (( $(echo "$cpu_percentage_number >= 80" |bc -l)  &&  $(echo "$cpu_percentage_number < 90" |bc -l) )); then
-		sym="^c#bf616a^CPU:${DEF_COLOR}"
-	else
-		blink $HIGH_CPU_IND
-		HIGH_CPU_IND=$?
-		
-		if [ $HIGH_CPU_IND -eq 1 ]; then
+	if [[ "$length" != 0 ]]; then
+		local cpu_percentage_number="${cpu_percentage: :-1}"
+	
+		if (( $(echo "$cpu_percentage_number < 70" |bc -l) )); then
+			sym="${DEF_COLOR}CPU:"
+		elif (( $(echo "$cpu_percentage_number >= 70" |bc -l)  &&  $(echo "$cpu_percentage_number < 80" |bc -l) )); then
+			sym="^c#ebcb8b^CPU:${DEF_COLOR}"
+		elif (( $(echo "$cpu_percentage_number >= 80" |bc -l)  &&  $(echo "$cpu_percentage_number < 90" |bc -l) )); then
 			sym="^c#bf616a^CPU:${DEF_COLOR}"
 		else
-			sym="    ${DEF_COLOR}"
+			blink $HIGH_CPU_IND
+			HIGH_CPU_IND=$?
+			
+			if [ $HIGH_CPU_IND -eq 1 ]; then
+				sym="^c#bf616a^CPU:${DEF_COLOR}"
+			else
+				sym="    ${DEF_COLOR}"
+			fi
 		fi
-	fi
 
-	if [ $(expr length $cpu_percentage) -lt 5 ]; then
-		cpu_percentage="$cpu_percentage "
+		if [ $(expr length $cpu_percentage) -lt 5 ]; then
+			cpu_percentage="$cpu_percentage "
+		fi
+		
+		CPU_STRING="$sym $cpu_percentage"
 	fi
-	
-	CPU_STRING="$sym $cpu_percentage"
 }
 
 generate_ram_string(){
@@ -296,15 +300,15 @@ generate_temp_string(){
 	elif (( $(echo "$temp_degrees_number >= 50" |bc -l)  &&  $(echo "$temp_degrees_number < 55" |bc -l) )); then
 		sym="^c#ebcb8b^${DEF_COLOR}"
 	elif (( $(echo "$temp_degrees_number >= 55" |bc -l)  &&  $(echo "$temp_degrees_number < 60" |bc -l) )); then
-		sym="^c#bf616a${DEF_COLOR}"
+		sym="^c#bf616a^${DEF_COLOR}"
 	else
 		blink $HIGH_T_IND
 		HIGH_T_IND=$?
 		
 		if [ $HIGH_T_IND -eq 1 ]; then
-			sym="^c#bf616a^CPU:${DEF_COLOR}"
+			sym="^c#bf616a^:${DEF_COLOR}"
 		else
-			sym="    ${DEF_COLOR}"
+			sym="  ${DEF_COLOR}"
 		fi
 	fi
 
@@ -336,7 +340,7 @@ HIGH_RAM_IND=0
 HIGH_HARD_IND=0
 HIGH_T_IND=0
 
-# init_temp_files
+init_temp_files
 
 date_service
 cpu_service
