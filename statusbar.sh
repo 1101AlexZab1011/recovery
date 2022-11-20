@@ -172,7 +172,8 @@ generate_cpu_string(){
 }
 
 generate_ram_string(){
-	local ram_percentage=$(printf "%.1f" "${1}")
+	local ram_percentage=$(echo ${1} | awk '{printf("%.1f \n",$1)}')
+
 	if (( $(echo "$ram_percentage < 70" |bc -l) )); then
 		sym="${DEF_COLOR}RAM:"
 	elif (( $(echo "$ram_percentage >= 70" |bc -l)  &&  $(echo "$ram_percentage < 80" |bc -l) )); then

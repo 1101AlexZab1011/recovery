@@ -13,8 +13,8 @@ yay -Syu
 echo "installing necessary packages"
 echo "installing xorg slock base-devel libx11 libxinerama libxft git vim webkit2gtk dbus libconfig mesa pcre2 libevdev uthash meson ninja acpi sysstat"
 yay -S xorg slock base-devel libx11 libxinerama libxft git vim webkit2gtk dbus libconfig mesa pcre2 libevdev uthash meson ninja acpi sysstat
-echo "installing twmn-git ranger atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie"
-yay -S twmn-git ranger atool unrar 7z pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie
+echo "installing twmn-git ranger atool unrar python-pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie"
+yay -S twmn-git ranger atool unrar python-pdftotext mupdf-tools perl-exiftool odt2txt pandoc python-xlsx2csv w3m lynx elinks jq mediainfo fontforge imagemagick antiword djvulibre udiskie
 echo "installing simplenote brightnessctl imlib2 geany libxext libxcb pixman network-manager-applet python-pip python2 conky"
 yay -S simplenote-electron-bin brightnessctl imlib2 geany libxext libxcb pixman network-manager-applet python-pip python2 conky
 
@@ -64,7 +64,7 @@ make install -C $DWM_DIR
 echo "making backup for config.h"
 cp $DWM_DIR/config.h $DWM_DIR/config.h.backup
 echo "making backup for patches.h"
-cp $DWM_DIR/config.h $DWM_DIR/pathces.h.backup
+cp $DWM_DIR/pathces.h $DWM_DIR/pathces.h.backup
 echo "replacing config.mk"
 cp $CURRENT_DIR/config.mk $DWM_DIR/config.mk
 echo "replacing config.h"

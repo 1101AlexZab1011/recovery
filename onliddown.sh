@@ -9,7 +9,7 @@ do
 	close="closed"
 
 	if [ "$state" = "$close" ]; then
-   	 	systemctl hibernate && slock
+   	 	systemctl suspend && slock
 	fi
 	sleep 0.1
 
