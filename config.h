@@ -876,6 +876,8 @@ static const char *volumetoggle[] = {"amixer", "set", "Master", "toggle", NULL};
 static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
 //update wp
 static const char *upwpcmd[] = { "upwp_once.sh", NULL };
+// open simplenote
+static const char *simplenotecmd[] = {"simplenote", "--no-sandbox", NULL};
 
 #if BAR_STATUSCMD_PATCH
 #if BAR_DWMBLOCKS_PATCH
@@ -916,6 +918,7 @@ static const Key keys[] = {
     {0,       			    XF86XK_AudioMute,     spawn,   				   {.v=volumetoggle} },
 	//update wp
 	{MODKEY|ShiftMask,       			    XK_w,     spawn,   				   {.v=upwpcmd} },
+	{MODKEY|ShiftMask,       			    XK_n,     spawn,   				   {.v=simplenotecmd} },
 	#if KEYMODES_PATCH
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },
 	#endif // KEYMODES_PATCH
