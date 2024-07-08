@@ -137,40 +137,40 @@ ${color1}${hr}${color}
 ${voffset -15}
 ${color1}IP:${alignr}${color2}${gw_ip}${color}
 ${color1}Interface:${alignr}${color2}${gw_iface}${color}
-#${upspeedf wlp1s0}
-#${downspeedf wlp1s0}
-#${upspeedgraph wlp1s0 20,60 -l}$alignr${downspeedgraph wlp1s0 20, 60 -l}
+#${upspeedf wlan0}
+#${downspeedf wlan0}
+#${upspeedgraph wlan0 20,60 -l}$alignr${downspeedgraph wlan0 20, 60 -l}
 
 ${color1}UP:${goto 89}${voffset -21}\
-${if_match ${upspeedf wlp1s0}<25}\
-	${color3}${upspeedgraph wlp1s0 50, 339 color8_rd color9_rd -l}\
-${else}${if_match ${upspeedf wlp1s0}<50}\
-	${color4}${upspeedgraph wlp1s0 50, 339 color8_rd color9_rd -l}\
-${else}${if_match ${upspeedf wlp1s0}<75}\
-	${color5}${upspeedgraph wlp1s0 50, 339 color8_rd color9_rd -l}\
-${else}${if_match ${upspeedf wlp1s0}<85}\
-	${color6}${upspeedgraph wlp1s0 50, 339 color8_rd color9_rd -l}\
-${else}${if_match ${upspeedf wlp1s0}>=85}\
-	${color7}${upspeedgraph wlp1s0 50, 339 color8_rd color9_rd -l}\
+${if_match ${upspeedf wlan0}<25}\
+	${color3}${upspeedgraph wlan0 50, 339 color8_rd color9_rd -l}\
+${else}${if_match ${upspeedf wlan0}<50}\
+	${color4}${upspeedgraph wlan0 50, 339 color8_rd color9_rd -l}\
+${else}${if_match ${upspeedf wlan0}<75}\
+	${color5}${upspeedgraph wlan0 50, 339 color8_rd color9_rd -l}\
+${else}${if_match ${upspeedf wlan0}<85}\
+	${color6}${upspeedgraph wlan0 50, 339 color8_rd color9_rd -l}\
+${else}${if_match ${upspeedf wlan0}>=85}\
+	${color7}${upspeedgraph wlan0 50, 339 color8_rd color9_rd -l}\
 ${endif}${endif}${endif}${endif}${endif}\
 ${color}\
-${voffset 21}${color2}${alignr}${upspeedf wlp1s0}KiB${alignr}${color}
+${voffset 21}${color2}${alignr}${upspeedf wlan0}KiB${alignr}${color}
 
 ${voffset -30}
 ${color1}DOWN:${goto 89}${voffset -21}\
-${if_match ${downspeedf wlp1s0}<25}\
-	${color3}${downspeedgraph wlp1s0 50, 339 color8_rd color9_rd -l}\
-${else}${if_match ${downspeedf wlp1s0}<50}\
-	${color4}${downspeedgraph wlp1s0 50, 339 color8_rd color9_rd -l}\
-${else}${if_match ${downspeedf wlp1s0}<75}\
-	${color5}${downspeedgraph wlp1s0 50, 339 color8_rd color9_rd -l}\
-${else}${if_match ${downspeedf wlp1s0}<85}\
-	${color6}${downspeedgraph wlp1s0 50, 339 color8_rd color9_rd -l}\
-${else}${if_match ${downspeedf wlp1s0}>=85}\
-	${color7}${downspeedgraph wlp1s0 50, 339 color8_rd color9_rd -l}\
+${if_match ${downspeedf wlan0}<25}\
+	${color3}${downspeedgraph wlan0 50, 339 color8_rd color9_rd -l}\
+${else}${if_match ${downspeedf wlan0}<50}\
+	${color4}${downspeedgraph wlan0 50, 339 color8_rd color9_rd -l}\
+${else}${if_match ${downspeedf wlan0}<75}\
+	${color5}${downspeedgraph wlan0 50, 339 color8_rd color9_rd -l}\
+${else}${if_match ${downspeedf wlan0}<85}\
+	${color6}${downspeedgraph wlan0 50, 339 color8_rd color9_rd -l}\
+${else}${if_match ${downspeedf wlan0}>=85}\
+	${color7}${downspeedgraph wlan0 50, 339 color8_rd color9_rd -l}\
 ${endif}${endif}${endif}${endif}${endif}\
 ${color}\
-${voffset 21}${color2}${alignr}${downspeedf wlp1s0}KiB${alignr}${color}
+${voffset 21}${color2}${alignr}${downspeedf wlan0}KiB${alignr}${color}
 
 ##########################################################################################
 ${voffset -40}

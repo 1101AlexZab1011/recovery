@@ -28,29 +28,14 @@ while true
 do
 	get_image
 	exists=$(grep "$IMGPATH" $HISTORYPATH)
-	
-	#if [ ! -z "$exists" ]; then
-	#	if [ ! $CONNECTED ]; then
-	#		~/.local/bin/wal -i $IMGPATH -s
-	#		python3 /home/user/color2x.py 
-	#		xrdb -merge /home/user/.Xresources 
-	#		xdotool key shift+Super+F5
-	#		pywalfox update
-	#		# wal-telegram --wal
-	#		echo "$IMGPATH" >> $HISTORYPATH
-	#		break
-	#	else
-	#		echo "Connected and file exists: $IMGPATH"
-	#		echo $exists
-	#	fi
-	#else
-		~/.local/bin/wal -i $IMGPATH -s
+		feh --bg-scale $IMGPATH
+		wal -i $IMGPATH -s
 		python3 /home/user/color2x.py 
 		xrdb -merge /home/user/.Xresources 
+		cat /home/user/.Xresources_additional >> /home/user/.Xresources
 		xdotool key shift+Super+F5
 		pywalfox update
 		# wal-telegram --wal
 		echo "$IMGPATH" >> $HISTORYPATH
 		break
-	#fi
 done
